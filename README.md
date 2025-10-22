@@ -825,7 +825,7 @@ bash ~/Hackaton2025/run.sh
 │  Browser (localhost:80)                     │
 │  ┌───────────────────────────────────────┐  │
 │  │ React Frontend (SPA)                  │  │
-│  │ - Компоненты                         │  │
+│  │ - Компоненты                          │  │
 │  │ - State Management                    │  │
 │  │ - HTTP requests (fetch/axios)         │  │
 │  └───────────────────────────────────────┘  │
