@@ -779,6 +779,8 @@ chmod +x ~/Hackaton2025/run.sh
 
 ```bash
 bash ~/Hackaton2025/run.sh
+```
+
 
 ---
 
