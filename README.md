@@ -263,39 +263,6 @@ cd ..
 cd ~/Hackaton2025/backend
 ```
 
-### Шаг 5.2: Отредактировать config.json
-
-Открыть файл конфигурации:
-
-```bash
-nano config.json
-```
-
-Убедитесь, что файл содержит следующие важные параметры:
-
-```json
-{
-  "app": {
-    "document_root": "../frontend/build",
-    "upload_path": "./uploads",
-    "threads_num": 0,
-    "enable_unicode": true
-  },
-  "listeners": [
-    {
-      "address": "0.0.0.0",
-      "port": 80,
-      "https": false
-    }
-  ],
-  "ssl": {
-    "cert": "",
-    "key": ""
-  },
-  "db_clients": []
-}
-```
-
 **Ключевые параметры:**
 - `document_root` — путь к React build файлам (`../frontend/build`)
 - `port` — 80 (стандартный HTTP порт)
@@ -539,38 +506,7 @@ http://localhost
 
 ---
 
-## Часть 8: Разработка Frontend (React)
-
-Когда вы изменяете React компоненты:
-
-### Шаг 8.1: Пересобрать React
-
-```bash
-cd ~/Hackaton2025/frontend
-npm run build
-cd ..
-```
-
-### Шаг 8.2: Перезагрузить браузер
-
-Нажать `Ctrl+Shift+R` для очистки кеша браузера.
-
----
-
-## Часть 9: Разработка Backend (Drogon C++)
-
-Когда вы изменяете C++ код:
-
-### Шаг 9.1: Пересобрать Drogon
-
-```bash
-cd ~/Hackaton2025/backend/build
-cmake ..
-make -j$(nproc)
-cd ..
-```
-
-### Шаг 9.2: Перезапустить сервер
+### Перезапуск сервера
 
 Убить текущий процесс:
 
@@ -664,7 +600,7 @@ source ~/.bashrc
 
 ### ❌ Ошибка: `Port 80 is already in use`
 
-**Решение 1: Найти и убить процесс**
+**Решение 1: Найти и кильнуть процесс (безопасность не подразумевается)**
 
 Найти процесс:
 
@@ -756,16 +692,6 @@ cd ..
 
 Перезагрузить браузер: `Ctrl+Shift+R`
 
-### ❌ CORS ошибки: `Access-Control-Allow-Origin`
-
-**Решение:** Убедитесь, что в контроллерах добавлены CORS заголовки:
-
-```cpp
-resp->addHeader("Access-Control-Allow-Origin", "*");
-resp->addHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-resp->addHeader("Access-Control-Allow-Headers", "Content-Type");
-```
-
 ### ❌ Ошибка при git: `submodule update failed`
 
 **Решение:**
@@ -843,26 +769,6 @@ npm install
 npm run build
 ```
 
-### ❌ `setcap: Permission denied`
-
-**Проблема:** Нет доступа к выполнению setcap
-
-**Решение:**
-
-```bash
-sudo setcap CAP_NET_BIND_SERVICE=+eip ~/Hackaton2025/backend/build/Hackaton2025
-```
-
-Если не сработает, используйте порт > 1024 в config.json:
-
-```json
-"listeners": [
-  {
-    "port": 8080
-  }
-]
-```
-
 ### ❌ Скрипт run.sh не выполняется
 
 **Решение:**
@@ -873,79 +779,6 @@ chmod +x ~/Hackaton2025/run.sh
 
 ```bash
 bash ~/Hackaton2025/run.sh
-```
-
----
-
-## Полезные команды
-
-### Просмотр работающих процессов
-
-Посмотреть процесс Drogon:
-
-```bash
-ps aux | grep Hackaton2025
-```
-
-### Убить процесс
-
-Убить Drogon:
-
-```bash
-killall Hackaton2025
-```
-
-Убить по PID:
-
-```bash
-kill -9 <PID>
-```
-
-### Просмотр портов
-
-Просмотр открытых портов:
-
-```bash
-sudo netstat -tuln | grep LISTEN
-```
-
-Альтернативный способ:
-
-```bash
-sudo lsof -i -P -n | grep LISTEN
-```
-
-### Очистить build папку (пересборка с нуля)
-
-```bash
-cd ~/Hackaton2025/backend/build
-```
-
-```bash
-rm -rf *
-```
-
-```bash
-cmake ..
-```
-
-```bash
-make -j$(nproc)
-```
-
-### Проверить права на порт 80
-
-```bash
-cd ~/Hackaton2025/backend/build
-getcap ./Hackaton2025
-```
-
-### Переустановить права на файл
-
-```bash
-cd ~/Hackaton2025/backend/build
-sudo setcap CAP_NET_BIND_SERVICE=+eip ./Hackaton2025
-```
 
 ---
 
