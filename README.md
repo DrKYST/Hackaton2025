@@ -847,46 +847,6 @@ bash ~/Hackaton2025/run.sh
 
 ---
 
-## Git workflow для команды
-
-### Коллега работает с React (frontend)
-
-```bash
-cd ~/Hackaton2025
-git fetch origin
-git checkout main
-git pull origin main
-git checkout -b feat/react-component
-cd frontend
-# Редактирование файлов в src/
-npm run build
-cd ..
-git add frontend/
-git commit -m "feat: новые React компоненты"
-git push origin feat/react-component
-# Создать Pull Request на GitHub
-```
-
-### Вы работаете с Drogon (backend)
-
-```bash
-cd ~/Hackaton2025
-git fetch origin
-git checkout main
-git pull origin main
-git checkout -b feat/api-endpoint
-cd backend
-# Редактирование файлов в controllers/
-cd build
-cmake ..
-make -j$(nproc)
-cd ..
-git add backend/
-git commit -m "feat: новые API endpoints"
-git push origin feat/api-endpoint
-# Создать Pull Request на GitHub
-```
-
 ---
 
 ## Быстрый старт
