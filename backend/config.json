@@ -1,0 +1,24 @@
+{
+    "listeners": [
+        {
+            "address": "0.0.0.0",
+            "port": 80,
+            "https": false
+        }
+    ],
+    "db_clients": [
+        {
+            "name": "default",
+            "rdbms": "postgresql",
+            "host": "10.0.2.2",
+            "port": 5432,
+            "dbname": "Hackaton2025",
+            "user": "postgres",
+            "passwd": "overclock",
+            "is_fast": false,
+            "connection_number": 1,
+            "timeout": -1.0
+        }
+    ],
+    "custom_config": {}
+}
